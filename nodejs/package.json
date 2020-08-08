@@ -1,0 +1,60 @@
+{
+  "name": "antidote",
+  "version": "1.0.0",
+  "description": "recovery poisoned messages from main queue",
+  "main": "index.js",
+  "author": "github.com/wakeupmh",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "dev": "node src/bin/index.js",
+    "cz": "git-cz",
+    "cover": "c8 --reporter=json-summary --reporter=html npm run test:unit",
+    "check-coverage": "c8 check-coverage --lines 95 --functions 95 --branches 95",
+    "test:unit": "mocha --require esm --require test/setup.js --slow 5000 test/unit/**/*.spec.js --exit",
+    "make-badges": "node_modules/.bin/jest-badges-readme"
+  },
+  "_moduleAliases": {
+    "@antidote": "src"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run cover && npm run check-coverage && npm run make-badges && git add 'README.md'",
+      "pre-push": "npm run lint --fix",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "@azure/storage-queue": "^12.1.0-preview.1",
+    "bluebird": "^3.7.2",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "module-alias": "^2.2.2",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@olavoparno/jest-badges-readme": "^1.4.1",
+    "c8": "^7.1.2",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.0.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "mocha": "^7.1.2",
+    "sinon": "^9.0.2",
+    "standard-version": "^8.0.0"
+  }
+}
