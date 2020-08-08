@@ -16,5 +16,5 @@ This application was developed due to the need to recover messages that fell in 
   * queueName
   * queueErrorName
 
-In the current context we are using * Azure * queues, but because it is an uncoupled architecture and code design, just change or add the new queue in `src/infrastructure/storage`.
+In the current context we are using *Azure* queues, but because it is an uncoupled architecture and code design, just change or add the new queue in `src/infrastructure/storage`.
 
